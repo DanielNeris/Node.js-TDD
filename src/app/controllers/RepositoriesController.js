@@ -20,7 +20,9 @@ class RepositoriesController {
       });
 
       if (!(await schema.isValid(req.body))) {
-        return res.status(400).json({ error: "Validation failed" });
+        return res
+          .status(400)
+          .json({ error: "Validation failed", success: false });
       }
 
       const { title, url, techs } = req.body;
@@ -50,7 +52,9 @@ class RepositoriesController {
       });
 
       if (!(await schema.isValid(req.body))) {
-        return res.status(400).json({ error: "Validation failed." });
+        return res
+          .status(400)
+          .json({ error: "Validation failed", success: false });
       }
 
       const { id } = req.params;
@@ -87,7 +91,7 @@ class RepositoriesController {
 
       repositories.splice(repositorie, 1);
 
-      return res.json({ success: true });
+      return res.status(204).json({ success: true });
     } catch (error) {
       return res.status(400).json({ error, success: false });
     }

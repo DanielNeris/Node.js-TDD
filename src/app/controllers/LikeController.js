@@ -14,10 +14,8 @@ class LikeController {
 
       repositorie.likes += 1;
 
-      return res.json({ data: repositorie, success: true });
+      return res.json({ likes: repositorie.likes });
     } catch (error) {
-      console.log(error);
-
       return res.status(400).json({ error, success: false });
     }
   }
