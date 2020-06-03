@@ -5,7 +5,7 @@ const repositories = require("../data/data");
 class RepositoriesController {
   async index(req, res) {
     try {
-      return res.json({ data: repositories, success: true });
+      return res.json(repositories);
     } catch (error) {
       return res.status(400).json({ error, success: false });
     }
@@ -37,7 +37,7 @@ class RepositoriesController {
 
       repositories.push(repositorie);
 
-      return res.status(201).json({ data: repositorie, success: true });
+      return res.status(201).json(repositorie);
     } catch (error) {
       return res.status(400).json({ error, success: false });
     }
@@ -46,9 +46,9 @@ class RepositoriesController {
   async update(req, res) {
     try {
       const schema = Yup.object().shape({
-        title: Yup.string().required(),
-        url: Yup.string().required(),
-        techs: Yup.array().required(),
+        title: Yup.string(),
+        url: Yup.string(),
+        techs: Yup.array(),
       });
 
       if (!(await schema.isValid(req.body))) {
@@ -72,7 +72,7 @@ class RepositoriesController {
       repositorie.url = url;
       repositorie.techs = techs;
 
-      return res.json({ data: repositorie, success: true });
+      return res.json(repositorie);
     } catch (error) {
       return res.status(400).json({ error, success: false });
     }
